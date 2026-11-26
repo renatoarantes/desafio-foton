@@ -5,7 +5,10 @@ interface AlertState {
   isOpen: boolean;
   message: string;
   title: string;
-  resolve: (() => void) | null;
+  isConfirm: boolean;
+  confirmText: string;
+  cancelText: string;
+  resolve: ((value: boolean) => void) | null;
 }
 
 export function useAlert() {
@@ -13,23 +16,34 @@ export function useAlert() {
     isOpen: false,
     message: '',
     title: 'Aviso',
+    isConfirm: false,
+    confirmText: 'OK',
+    cancelText: 'Cancelar',
     resolve: null,
   });
 
-  const alert = useCallback((message: string, title = 'Aviso'): Promise<void> => {
+  const alert = useCallback((message: string, title = 'Aviso', isConfirm = false, confirmText = 'OK', cancelText = 'Cancelar'): Promise<boolean> => {
     return new Promise((resolve) => {
       setState({
         isOpen: true,
         message,
         title,
+        isConfirm,
+        confirmText,
+        cancelText,
         resolve,
       });
     });
   }, []);
 
   const handleClose = () => {
-    state.resolve?.();
-    setState({ isOpen: false, message: '', title: 'Aviso', resolve: null });
+    state.resolve?.(false);
+    setState({ isOpen: false, message: '', title: 'Aviso', isConfirm: false, resolve: null, confirmText: '', cancelText: '' });
+  };
+
+  const handleConfirm = () => {
+    state.resolve?.(true);
+    setState({ isOpen: false, message: '', title: 'Aviso', isConfirm: false, resolve: null, confirmText: '', cancelText: '' });
   };
 
   const AlertDialog = () => (
@@ -38,6 +52,10 @@ export function useAlert() {
       title={state.title}
       message={state.message}
       onClose={handleClose}
+      onConfirm={handleConfirm}
+      isConfirm={state.isConfirm}
+      confirmText={state.confirmText}
+      cancelText={state.cancelText}
     />
   );
 

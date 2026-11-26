@@ -6,7 +6,11 @@ interface AlertModalProps {
   message: string;
   title?: string;
   buttonText?: string;
+  isConfirm?: boolean;
+  confirmText?: string;
+  cancelText?: string;
   onClose: () => void;
+  onConfirm?: () => void;
 }
 
 export function AlertModal({
@@ -14,14 +18,16 @@ export function AlertModal({
   message,
   title = 'Aviso',
   buttonText = 'OK',
+  isConfirm = false,
+  confirmText = 'Confirmaaaaaar',
+  cancelText = 'Cancelar',
   onClose,
+  onConfirm,
 }: AlertModalProps) {
   // Permite fechar o alerta apertando ESC ou ENTER
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' || e.key === 'Enter') {
-        onClose();
-      }
+      if (e.key === 'Escape') onClose();
     };
 
     if (isOpen) {
@@ -38,6 +44,9 @@ export function AlertModal({
   const handleContentClick = (e: MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
   };
+  console.log('isConfirmed ' + isConfirm);
+  console.log('confirmText ' + confirmText);
+  console.log('cancelText ' + cancelText);
 
   return (
     <div className="alert-overlay" onClick={onClose}>
@@ -53,14 +62,35 @@ export function AlertModal({
         <p id="alert-message" className="alert-message">{message}</p>
         
         <div className="alert-actions">
-          <button 
-            type="button" 
-            className="alert-button" 
-            onClick={onClose}
-            autoFocus
-          >
+          {isConfirm ? (
+            <div>
+              <button 
+                type="button" 
+                className="alert-button alert-button--confirm" 
+                onClick={onClose}
+              >
+                {cancelText}
+              </button>
+
+              <button 
+                type="button" 
+                className="alert-button" 
+                onClick={onConfirm}
+                autoFocus
+              >
+              {confirmText}
+            </button>
+          </div>
+          ) : 
+          (
+            <button 
+              type="button" 
+              className="alert-button" 
+              onClick={onClose}
+              autoFocus
+            >
             {buttonText}
-          </button>
+          </button>)}
         </div>
       </div>
     </div>
