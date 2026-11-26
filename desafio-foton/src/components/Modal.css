@@ -1,4 +1,4 @@
-.alert-overlay {
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -11,36 +11,37 @@
   z-index: 9999;
 }
 
-.alert-box {
+.modal-box {
   background: #ffffff;
   padding: 24px;
   border-radius: 10px;
   width: 90%;
-  max-width: 400px;
+  max-width: 470px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   text-align: center;
   font-family: sans-serif;
 }
 
-.alert-title {
+.modal-title {
   margin: 0 0 12px 0;
   font-size: 1.25rem;
   color: #1f2937;
 }
 
-.alert-message {
+.modal-message {
   margin: 0 0 24px 0;
   font-size: 1rem;
   color: #4b5563;
   line-height: 1.5;
 }
 
-.alert-actions {
+.modal-actions > div {
   display: flex;
+  gap: 12px; 
   justify-content: center;
 }
 
-.alert-button {
+.modal-button {
   background-color: #2563eb;
   color: white;
   border: none;
@@ -52,6 +53,6 @@
   transition: background-color 0.2s;
 }
 
-.alert-button:hover {
+.modal-button:hover {
   background-color: #1d4ed8;
 }

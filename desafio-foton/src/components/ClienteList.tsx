@@ -1,14 +1,16 @@
 import type { Cliente } from '../types/Cliente';
 import { useNavigate } from 'react-router-dom';
 import { BsFillPencilFill, BsFillTrashFill } from "react-icons/bs";
+import { formatarTelefone } from '../utils/formatters';
 
 interface Props {
   clientes: Cliente[];
   onEditar: (cliente: Cliente) => void;
+  onEditarModal: (cliente: Cliente) => void;
   onExcluir: (id: string | number) => void;
 }
 
-export function ClienteList({ clientes, onEditar, onExcluir }: Props) {
+export function ClienteList({ clientes, onEditar, onEditarModal, onExcluir }: Props) {
   const navigate = useNavigate();
 
   return (
@@ -28,7 +30,7 @@ export function ClienteList({ clientes, onEditar, onExcluir }: Props) {
             <tr key={cliente.id}>
               <td>{cliente.nome}</td>
               <td>{cliente.email}</td>
-              <td>{cliente.telefone}</td>
+              <td>{formatarTelefone(cliente.telefone)}</td>
               <td>
                 <span className={cliente.ativo ? 'badge-ativo' : 'badge-inativo'}>
                   {cliente.ativo ? 'Ativo' : 'Inativo'}
@@ -36,8 +38,9 @@ export function ClienteList({ clientes, onEditar, onExcluir }: Props) {
               </td>
               <td>
                 <div className="acoes">
-                  <button className="btn-editar" title="Outra Rota" onClick={() => navigate(`/edit/${cliente.id}`)}><BsFillPencilFill /></button>
-                  <button className="btn-editar" title="No Form acima" onClick={() => onEditar(cliente)}><BsFillPencilFill /></button>
+                  <button className="btn-editar" title="Rota" onClick={() => navigate(`/edit/${cliente.id}`)}><BsFillPencilFill /></button>
+                  <button className="btn-editar" title="Modal" onClick={() => onEditarModal(cliente)}><BsFillPencilFill /></button>
+                  <button className="btn-editar" title="Acima" onClick={() => onEditar(cliente)}><BsFillPencilFill /></button>
                   <button className="btn-excluir" title="Excluir" onClick={() => onExcluir(cliente.id!)}><BsFillTrashFill /></button>
                 </div>
               </td>

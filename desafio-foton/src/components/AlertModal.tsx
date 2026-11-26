@@ -1,5 +1,5 @@
 import { useEffect, type MouseEvent } from 'react';
-import './AlertModal.css';
+import './Modal.css';
 
 interface AlertModalProps {
   isOpen: boolean;
@@ -44,29 +44,26 @@ export function AlertModal({
   const handleContentClick = (e: MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
   };
-  console.log('isConfirmed ' + isConfirm);
-  console.log('confirmText ' + confirmText);
-  console.log('cancelText ' + cancelText);
 
   return (
-    <div className="alert-overlay" onClick={onClose}>
+    <div className="modal-overlay" onClick={onClose}>
       <div 
-        className="alert-box" 
+        className="modal-box" 
         onClick={handleContentClick}
         role="alertdialog"
         aria-modal="true"
         aria-labelledby="alert-title"
         aria-describedby="alert-message"
       >
-        <h3 id="alert-title" className="alert-title">{title}</h3>
-        <p id="alert-message" className="alert-message">{message}</p>
+        <h3 id="alert-title" className="modal-title">{title}</h3>
+        <p id="alert-message" className="modal-message">{message}</p>
         
-        <div className="alert-actions">
+        <div className="modal-actions">
           {isConfirm ? (
             <div>
               <button 
                 type="button" 
-                className="alert-button alert-button--confirm" 
+                className="btn-cancel" 
                 onClick={onClose}
               >
                 {cancelText}
@@ -74,7 +71,7 @@ export function AlertModal({
 
               <button 
                 type="button" 
-                className="alert-button" 
+                className="btn-confirm" 
                 onClick={onConfirm}
                 autoFocus
               >
@@ -85,7 +82,7 @@ export function AlertModal({
           (
             <button 
               type="button" 
-              className="alert-button" 
+              className="modal-button" 
               onClick={onClose}
               autoFocus
             >

@@ -2,6 +2,8 @@ import { useState, type SubmitEvent  } from 'react';
 import type { Cliente } from '../types/Cliente';
 import { BsFillFloppy2Fill, BsXCircle } from "react-icons/bs";
 import { AlertModal } from './AlertModal';
+import { validarTelefone } from '../utils/validators';
+import { formatarTelefone } from '../utils/formatters';
 
 interface Props {
   clienteEmEdicao: Cliente | null;
@@ -58,7 +60,17 @@ function ClienteFormFields({ clienteEmEdicao, onSalvar, onCancelar, mostrarAlert
       return;
     }
 
-    await onSalvar(formData);
+    if (!validarTelefone(formData.telefone)) {
+      mostrarAlerta("Digite um telefone válido no formato (99) 99999-9999.");
+      return;
+    }
+
+    const dadosParaSalvar = {
+      ...formData,
+      telefone: formData.telefone.replace(/\D/g, ""), 
+    };
+
+    await onSalvar(dadosParaSalvar);
   };
 
   return (
@@ -81,10 +93,10 @@ function ClienteFormFields({ clienteEmEdicao, onSalvar, onCancelar, mostrarAlert
           />
           
           <input
-            type="text"
-            placeholder="Telefone"
+            type="tel"
+            placeholder="Telefone (99) 99999-9999"
             value={formData.telefone}
-            onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
+            onChange={(e) => setFormData({ ...formData, telefone: formatarTelefone(e.target.value) })}
           />
         </div>        
 
@@ -109,7 +121,6 @@ function ClienteFormFields({ clienteEmEdicao, onSalvar, onCancelar, mostrarAlert
             )}
           </div>
         </div>
-
       </form>
     </div>
   );

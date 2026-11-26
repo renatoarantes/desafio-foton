@@ -4,6 +4,7 @@ import { api } from "../services/api";
 import { ClienteForm } from "../components/ClienteForm";
 import type { Cliente } from "../types/Cliente";
 import { useAlert } from "../hooks/useAlert";
+import { formatarTelefone } from "../utils/formatters";
 
 export default function EditarCliente() {
   const { id } = useParams<{ id: string }>();
@@ -18,7 +19,7 @@ export default function EditarCliente() {
     const buscarCliente = async () => {
       try {
         const dados = await api.getClienteById(id!);
-        setCliente(dados);
+        setCliente({ ...dados, telefone: formatarTelefone(dados.telefone) });
       } catch {
         await alert("Erro ao carregar os dados do cliente.", "Erro");
         navigate("/");

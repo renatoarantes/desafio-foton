@@ -5,12 +5,17 @@ import { ClienteForm } from "./components/ClienteForm";
 import type { Cliente } from "./types/Cliente";
 import "./App.css";
 import { useAlert } from "./hooks/useAlert";
+import { Modal } from './components/Modal';
+import { formatarTelefone } from "./utils/formatters";
 
 function App() {
   const [clientes, setClientes] = useState<Cliente[]>([]);
   const [carregando, setCarregando] = useState<boolean>(true);
+  const [formKey, setFormKey] = useState(0);
   const [clienteEmEdicao, setClienteEmEdicao] = useState<Cliente | null>(null);
   const { alert, AlertDialog } = useAlert();
+  const [modalAberto, setModalAberto] = useState(false);
+  const [clienteModal, setClienteModal] = useState<Cliente | null>(null);
 
   // Função para buscar os dados atualizados da API
   const carregarClientes = async () => {
@@ -24,7 +29,6 @@ function App() {
     }
   };
 
-  // Carrega a lista assim que a tela monta
   useEffect(() => {
     let cancelado = false;
 
@@ -48,18 +52,25 @@ function App() {
   }, [alert]);
 
   // CREATE / UPDATE
-  const handleSalvar = async (cliente: Cliente) => {
+  const handleSalvar = async (cliente: Cliente, isModal: boolean = false) => {
     try {
-      if (clienteEmEdicao && clienteEmEdicao.id) {
-        await api.updateCliente(clienteEmEdicao.id, cliente);
+      if (cliente.id) {
+        await api.updateCliente(cliente.id, cliente);
         alert("Cliente atualizado com sucesso!", "Sucesso");
       } else {
         await api.createCliente(cliente);
         alert("Cliente cadastrado com sucesso!", "Sucesso");
       }
 
-      setClienteEmEdicao(null); // Fecha o modo edição
-      carregarClientes(); // Recarrega a tabela sem dar F5 na página
+      if (isModal) {
+        setModalAberto(false);
+        setClienteModal(null);
+      } else {
+        setClienteEmEdicao(null);
+        setFormKey((prev) => prev + 1);
+      }
+
+      carregarClientes(); 
     } catch {
       alert("Erro ao salvar o cliente.", "Erro");
     }
@@ -85,10 +96,15 @@ function App() {
     }
   };
 
+  const handleAbrirModal = (cliente: Cliente) => {
+    setClienteModal({...cliente, telefone: formatarTelefone(cliente.telefone)}); 
+    setModalAberto(true);
+  };
+
   return (
     <div
       style={{
-        maxWidth: "800px",
+        maxWidth: "850px",
         margin: "0 auto",
         padding: "20px",
         fontFamily: "sans-serif",
@@ -98,7 +114,8 @@ function App() {
 
       {/* Formulário de Cadastro/Edição */}
       <ClienteForm
-        clienteEmEdicao={clienteEmEdicao}
+        key={formKey}
+        clienteEmEdicao={clienteEmEdicao ? { ...clienteEmEdicao, telefone: formatarTelefone(clienteEmEdicao.telefone) } : null}
         onSalvar={handleSalvar}
         onCancelar={() => setClienteEmEdicao(null)}
       />
@@ -118,11 +135,19 @@ function App() {
         <ClienteList
           clientes={clientes}
           onEditar={setClienteEmEdicao}
+          onEditarModal={handleAbrirModal}
           onExcluir={handleExcluir}
         />
       )}
 
       <AlertDialog />
+       <Modal isOpen={modalAberto} onClose={() => setModalAberto(false)}>
+        <ClienteForm 
+          clienteEmEdicao={clienteModal} 
+          onSalvar={(data) => handleSalvar(data, true)} 
+          onCancelar={() => setModalAberto(false)} 
+        />
+      </Modal>
     </div>
   );
 }
