@@ -24,7 +24,7 @@ export function AlertModal({
   onClose,
   onConfirm,
 }: AlertModalProps) {
-  // Permite fechar o alerta apertando ESC ou ENTER
+  // Permite fechar o alerta apertando ESC
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();

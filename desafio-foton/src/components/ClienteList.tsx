@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import type { Cliente } from '../types/Cliente';
 import { useNavigate } from 'react-router-dom';
 import { BsFillPencilFill, BsFillTrashFill } from "react-icons/bs";
 import { formatarTelefone } from '../utils/formatters';
+import { Pagination } from './Pagination';
 
 interface Props {
   clientes: Cliente[];
@@ -12,6 +14,16 @@ interface Props {
 
 export function ClienteList({ clientes, onEditar, onEditarModal, onExcluir }: Props) {
   const navigate = useNavigate();
+
+  // --- PAGINAÇÃO ---
+  const [paginaAtual, setPaginaAtual] = useState(1);
+  const itensPorPagina = 5;
+
+  const indiceUltimoItem = paginaAtual * itensPorPagina;
+  const indicePrimeiroItem = indiceUltimoItem - itensPorPagina;
+  const clientesPaginados = clientes.slice(indicePrimeiroItem, indiceUltimoItem);
+  
+  const totalPaginas = Math.ceil(clientes.length / itensPorPagina);
 
   return (
     <div className="card">
@@ -26,7 +38,7 @@ export function ClienteList({ clientes, onEditar, onEditarModal, onExcluir }: Pr
           </tr>
         </thead>
         <tbody>
-          {clientes.map((cliente) => (
+          {clientesPaginados.map((cliente) => (
             <tr key={cliente.id}>
               <td>{cliente.nome}</td>
               <td>{cliente.email}</td>
@@ -48,6 +60,12 @@ export function ClienteList({ clientes, onEditar, onEditarModal, onExcluir }: Pr
           ))}
         </tbody>
       </table>
+
+      <Pagination 
+        paginaAtual={paginaAtual} 
+        totalPaginas={totalPaginas} 
+        onPageChange={setPaginaAtual} 
+      />
     </div>
   );
 }

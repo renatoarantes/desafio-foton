@@ -1,0 +1,71 @@
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; 
+  gap: 6px; 
+  margin-top: 20px;
+  padding: 8px 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+}
+
+/* Estilo compartilhado para botões de navegação e números */
+.pagination-button,
+.pagination-number {
+  padding: 8px 12px;
+  background-color: #ffffff;
+  color: #1f2937;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Tamanho mínimo para os botões numéricos ficarem proporcionais */
+.pagination-number {
+  min-width: 38px;
+  text-align: center;
+}
+
+/* Efeito hover nos botões não desabilitados e não ativos */
+.pagination-button:hover:not(:disabled),
+.pagination-number:hover:not(.active) {
+  background-color: #91b0eb;
+  border-color: #9ca3af;
+}
+
+/* Efeito ao clicar */
+.pagination-button:active:not(:disabled),
+.pagination-number:active:not(.active) {
+  background-color: #e5e7eb;
+  transform: scale(0.96);
+}
+
+/* Estilo da página atual (Ativa) */
+.pagination-number.active {
+  background-color: #2563eb; 
+  color: #ffffff;
+  border-color: #2563eb;
+  font-weight: 600;
+  cursor: default;
+}
+
+/* Estilo quando Anterior/Próxima está desabilitado */
+.pagination-button:disabled {
+  background-color: #f9fafb;
+  color: #9ca3af;
+  border-color: #e5e7eb;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Estilo das reticências (...) */
+.pagination-ellipsis {
+  padding: 8px 4px;
+  color: #6b7280;
+  user-select: none; 
+}

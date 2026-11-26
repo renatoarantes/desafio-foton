@@ -113,12 +113,14 @@ function App() {
       <h1>Gerenciamento de Clientes</h1>
 
       {/* Formulário de Cadastro/Edição */}
-      <ClienteForm
-        key={formKey}
-        clienteEmEdicao={clienteEmEdicao ? { ...clienteEmEdicao, telefone: formatarTelefone(clienteEmEdicao.telefone) } : null}
-        onSalvar={handleSalvar}
-        onCancelar={() => setClienteEmEdicao(null)}
-      />
+      <div className="card">
+        <ClienteForm
+          key={formKey}
+          clienteEmEdicao={clienteEmEdicao ? { ...clienteEmEdicao, telefone: formatarTelefone(clienteEmEdicao.telefone) } : null}
+          onSalvar={handleSalvar}
+          onCancelar={() => setClienteEmEdicao(null)}
+        />
+      </div>
 
       {/* Tabela ou Estados de Carregamento/Vazio */}
       {carregando ? (

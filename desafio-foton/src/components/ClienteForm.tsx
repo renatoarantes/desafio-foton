@@ -74,7 +74,7 @@ function ClienteFormFields({ clienteEmEdicao, onSalvar, onCancelar, mostrarAlert
   };
 
   return (
-    <div className="card">
+    
       <form onSubmit={handleSubmit}>
         <h2>{clienteEmEdicao ? 'Editar Cliente' : 'Novo Cliente'}</h2>
         <div className="form-grid">
@@ -122,6 +122,5 @@ function ClienteFormFields({ clienteEmEdicao, onSalvar, onCancelar, mostrarAlert
           </div>
         </div>
       </form>
-    </div>
   );
 }
