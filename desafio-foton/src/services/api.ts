@@ -4,6 +4,11 @@ const BASE_URL = 'http://localhost:3000';
 
 export const api = {
   getClientes: () => fetch(`${BASE_URL}/clientes`).then(r => r.json()),
+  getClienteById: (id: string) => 
+  fetch(`${BASE_URL}/clientes/${id}`).then(r => {
+    if (!r.ok) throw new Error('Cliente não encontrado');
+    return r.json();
+  }),
   createCliente: (data: Omit<Cliente, 'id'>) =>
     fetch(`${BASE_URL}/clientes`, {
       method: 'POST',
