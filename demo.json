@@ -1,0 +1,102 @@
+{
+  "uuid": "bf08d1cc-d83a-42ff-81ab-e9684aa5b458",
+  "lastMigration": 33,
+  "name": "Demo API",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3000,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "9a403f2f-11b0-406f-a53a-306a1db3e134",
+      "type": "crud",
+      "documentation": "",
+      "method": "",
+      "endpoint": "Clientes",
+      "responses": [
+        {
+          "uuid": "46038a62-9a46-47a9-b78f-179f6d5ae7c6",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "dbsu",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "9a403f2f-11b0-406f-a53a-306a1db3e134"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [
+    {
+      "uuid": "b4ec7fa5-df2c-4b1b-905b-b0254e7708f5",
+      "id": "dbsu",
+      "name": "Clientes",
+      "documentation": "",
+      "value": "[\r\n  {\r\n    \"id\": 1,\r\n    \"nome\": \"Maria Silva\",\r\n    \"email\": \"maria@email.com\",\r\n    \"telefone\": \"11999999999\",\r\n    \"ativo\": true\r\n  },\r\n  {\r\n    \"id\": 2,\r\n    \"nome\": \"João Souza\",\r\n    \"email\": \"joao@email.com\",\r\n    \"telefone\": \"21988888888\",\r\n    \"ativo\": true\r\n  }\r\n]\r\n\r\n"
+    }
+  ],
+  "callbacks": []
+}
