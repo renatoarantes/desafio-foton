@@ -2,7 +2,7 @@
 
   Este projeto é uma aplicação SPA (Single Page Application) para o gerenciamento de clientes, desenvolvida com React, TypeScript e Vite, conforme solicitado no desafio técnico. A aplicação consome uma API REST simulada e possui suporte a três fluxos diferentes de edição para demonstrar diferentes abordagens de UI/UX.
 
-##🚀 Pré-requisitos
+## 🚀 Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina:
 
@@ -10,7 +10,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina:
  - Git
  - Editor de código de sua preferência (recomendado: VSCode com extensões ESLint e Prettier)
 
-##📦 Dependências Principais
+## 📦 Dependências Principais
 
   O projeto foi construído utilizando as seguintes tecnologias:
 
@@ -20,7 +20,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina:
  - React Router DOM v6 (Para navegação entre telas via SPA)
  - Mockoon (Para simular a API REST)
 
- ##🛠️ Como executar a aplicação
+ ## 🛠️ Como executar a aplicação
 
   O projeto é dividido em duas partes: o Front-end (React) e o Mock de API (JSON Server). Você precisará de dois terminais abertos para rodar ambos simultaneamente.
 
