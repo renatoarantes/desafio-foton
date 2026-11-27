@@ -1,75 +1,46 @@
-# React + TypeScript + Vite
+# Desafio Técnico - CRUD de Clientes (React)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+  Este projeto é uma aplicação SPA (Single Page Application) para o gerenciamento de clientes, desenvolvida com React, TypeScript e Vite, conforme solicitado no desafio técnico. A aplicação consome uma API REST simulada e possui suporte a três fluxos diferentes de edição para demonstrar diferentes abordagens de UI/UX.
 
-Currently, two official plugins are available:
+##🚀 Pré-requisitos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Antes de começar, você vai precisar ter instalado em sua máquina:
 
-## React Compiler
+ - Node.js (versão 20.19.1)
+ - Git
+ - Editor de código de sua preferência (recomendado: VSCode com extensões ESLint e Prettier)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+##📦 Dependências Principais
 
-## Expanding the ESLint configuration
+  O projeto foi construído utilizando as seguintes tecnologias:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+ - React 18 (com Hooks e Function Components)
+ - TypeScript (Tipagem estática rigorosa)
+ - Vite (Build tool e servidor de desenvolvimento)
+ - React Router DOM v6 (Para navegação entre telas via SPA)
+ - Mockoon (Para simular a API REST)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+ ##🛠️ Como executar a aplicação
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+  O projeto é dividido em duas partes: o Front-end (React) e o Mock de API (JSON Server). Você precisará de dois terminais abertos para rodar ambos simultaneamente.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+  - Passo 1: Clonar e instalar as dependências
+  
+    No primeiro terminal, na raiz do projeto, execute:
+    ```bash
+    # Instalar as dependências do front-end
+    npm install
+    ```
 
-```
+  - Passo 2: Iniciar o Mock de API
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+    Abrir o Mockoon e colocar na configuração o arquivo demo.json, e clicar no botão verde com imagem de play "Start local server".
+  
+  - Passo 3: Iniciar o Front-end React
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+    No segundo terminal, execute:
+    ```bash
+    npm run dev
+    ```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+    A aplicação estará disponível em http://localhost:5173.
