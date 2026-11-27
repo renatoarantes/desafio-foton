@@ -24,7 +24,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina:
 
   O projeto é dividido em duas partes: o Front-end (React) e o Mock de API (JSON Server). Você precisará de dois terminais abertos para rodar ambos simultaneamente.
 
-  - Passo 1: Clonar e instalar as dependências
+  - **Passo 1: Clonar e instalar as dependências**
   
     No primeiro terminal, na raiz do projeto, execute:
     ```bash
@@ -32,11 +32,13 @@ Antes de começar, você vai precisar ter instalado em sua máquina:
     npm install
     ```
 
-  - Passo 2: Iniciar o Mock de API
+  - **Passo 2: Iniciar o Mock de API**
 
-    Abrir o Mockoon e colocar na configuração o arquivo demo.json, e clicar no botão verde com imagem de play "Start local server".
+    Abrir o Mockoon e colocar na configuração o arquivo **demo.json**, e clicar no botão verde com imagem de play **"Start local server"**.
+
+    A aplicação estará disponível em http://localhost:3000.
   
-  - Passo 3: Iniciar o Front-end React
+  - **Passo 3: Iniciar o Front-end React**
 
     No segundo terminal, execute:
     ```bash
@@ -44,3 +46,15 @@ Antes de começar, você vai precisar ter instalado em sua máquina:
     ```
 
     A aplicação estará disponível em http://localhost:5173.
+
+    ## 🤖 Uso de Ferramentas de Inteligência Artificial
+
+    Em conformidade com as regras do desafio, documento abaixo o uso de IA durante o processo:
+
+      - Ferramentas Utilizadas: Google Gemini (modelo de linguagem) e verificações no GitHub Copilot dentro do VSCode.
+
+    * **Etapas de Aplicação:**
+      * *Configuração inicial de ambiente:* Ajuda na instalação do node, do vite e do nvm.
+      * *Arquitetura de Componentes:* Auxílio no desenho da estrutura de pastas (`services`, `types`, `components`).
+      * *Implementação de Funcionalidades Extras:* A IA auxiliou na implementacação das funcionalidades de paginação e modal reutilizável.
+
